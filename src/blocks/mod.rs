@@ -15,11 +15,12 @@ pub struct LastUpdated {
     last_result: Arc<Mutex<String>>,
 }
 
-impl LastUpdated{
+impl LastUpdated {
     pub fn new(interval: u64) -> Self {
+        let last = Instant::now() - Duration::from_millis(interval + 1);
         Self {
             interval,
-            last_update: Arc::new(Mutex::new(Instant::now())),
+            last_update: Arc::new(Mutex::new(last)),
             last_result: Arc::new(Mutex::new(String::new())),
         }
     }
