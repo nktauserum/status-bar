@@ -24,13 +24,14 @@ pub struct BatteryConfig {
 pub struct WeatherConfig {
     pub place: WeatherPlace,
     pub key: String,
+    pub interval: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct WeatherPlace {
-    pub lat: String,
+    pub lat: f64,
     #[serde(rename = "long")]
-    pub long: String,
+    pub long: f64,
 }
 
 

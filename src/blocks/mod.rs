@@ -1,4 +1,3 @@
-use std::ops::Deref;
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
@@ -35,7 +34,7 @@ impl LastUpdated{
         let guard = self.last_result.lock().expect("locking last_result");
         guard.clone()
     }
-    
+
     pub fn set_last_result(&self, value: String) {
         {
             let mut guard = self.last_result.lock().expect("locking last_result");

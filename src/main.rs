@@ -8,7 +8,8 @@ use crate::blocks::{
     Block,
     
     time::DatetimeBlock,
-    battery::BatteryBlock
+    battery::BatteryBlock,
+    weather::WeatherBlock,
 };
 use crate::config::Config;
 
@@ -57,6 +58,7 @@ fn main() {
     let config: Config = Config::load("config.json");
 
     let bar = Bar::new(config.interval_all, vec![
+        WeatherBlock::new(config.weather.interval, config.weather.key, config.weather.place.lat, config.weather.place.long),
         BatteryBlock::new(config.battery.interval),
         DatetimeBlock::new(config.datetime.offset, config.datetime.format.as_str()),
     ]);
