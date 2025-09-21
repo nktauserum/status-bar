@@ -12,6 +12,7 @@ use crate::blocks::{
     weather::WeatherBlock,
 };
 use crate::config::Config;
+use clap::Parser;
 
 struct Bar {
     update_interval: u64,
@@ -54,8 +55,21 @@ impl Bar {
     }
 }
 
+
+#[derive(Parser, Debug)]
+#[command(author, version, about)]
+struct CLI {
+    #[arg(short, long, value_name = "FILE")]
+    config: Option<String>,
+}
+
 fn main() {
-    let config: Config = Config::load("config.json");
+    let args = CLI::parse();
+    
+    let config = match args.config {
+        Some(file) => Config::load(file.as_str()),
+        None => panic!("[ERROR]: укажите путь к config.json")
+    };
 
     let bar = Bar::new(config.interval_all, vec![
         WeatherBlock::new(config.weather.interval, config.weather.key, config.weather.place.lat, config.weather.place.long),
