@@ -6,7 +6,8 @@ use std::time::Duration;
 use crate::blocks::{
     Block,
     
-    time::DatetimeBlock
+    time::DatetimeBlock,
+    battery::BatteryBlock
 };
 
 struct Bar {
@@ -52,7 +53,8 @@ impl Bar {
 
 fn main() {
     let bar = Bar::new(500, vec![
-        DatetimeBlock::new(3, "%a, %d %b %H:%M")
+        BatteryBlock::new(1000),
+        DatetimeBlock::new(3, "%a %d %b %H:%M"),
     ]);
 
     bar.run();
