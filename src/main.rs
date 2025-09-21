@@ -1,6 +1,8 @@
 mod blocks;
 
 use std::process::Command;
+use std::thread::sleep;
+use std::time::Duration;
 use crate::blocks::{
     Block,
     
@@ -8,12 +10,14 @@ use crate::blocks::{
 };
 
 struct Bar {
+    update_interval: u64,
     blocks: Vec<Box<dyn Block>>,
 }
 
 impl Bar {
-    fn new(blocks: Vec<Box<dyn Block>>) -> Self {
+    fn new(update_interval: u64, blocks: Vec<Box<dyn Block>>) -> Self {
         Self {
+            update_interval,
             blocks
         }
     }
@@ -40,12 +44,14 @@ impl Bar {
             }
 
             self.update(upd_str.join(" | "));
+
+            sleep(Duration::from_millis(self.update_interval));
         }
     }
 }
 
 fn main() {
-    let bar = Bar::new(vec![
+    let bar = Bar::new(500, vec![
         DatetimeBlock::new(3, "%a, %d %b %H:%M")
     ]);
 
