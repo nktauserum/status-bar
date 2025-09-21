@@ -1,4 +1,5 @@
 mod blocks;
+mod config;
 
 use std::process::Command;
 use std::thread::sleep;
@@ -9,6 +10,7 @@ use crate::blocks::{
     time::DatetimeBlock,
     battery::BatteryBlock
 };
+use crate::config::Config;
 
 struct Bar {
     update_interval: u64,
@@ -52,9 +54,11 @@ impl Bar {
 }
 
 fn main() {
-    let bar = Bar::new(500, vec![
-        BatteryBlock::new(1000),
-        DatetimeBlock::new(3, "%a %d %b %H:%M"),
+    let config: Config = Config::load("config.json");
+
+    let bar = Bar::new(config.interval_all, vec![
+        BatteryBlock::new(config.battery.interval),
+        DatetimeBlock::new(config.datetime.offset, config.datetime.format.as_str()),
     ]);
 
     bar.run();

@@ -1,0 +1,19 @@
+{
+  "interval_all": 500,
+  "datetime": {
+    "offset": 3,
+    "format": "%a %d %b %H:%M"
+  },
+
+  "battery":  {
+    "interval": 1000
+  },
+
+  "weather": {
+      "place": {
+          "lat": "10",
+          "long": "15"
+      },
+      "key": "your OpenWeather API key"
+    }
+}
