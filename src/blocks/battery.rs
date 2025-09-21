@@ -18,11 +18,11 @@ impl BatteryBlock {
         let mn = Manager::new()?;
         let batts = mn.batteries()?;
 
-
         let mut proc: u32 = 0;
+        // Для одной батареи, как в моём случае, это корректно.
         for battery in batts {
             let state = battery?.state_of_charge().value;
-            proc = state as u32 * 100;
+            proc = (state as f32 * 100f32) as u32;
         }
 
         let res = format!("{proc}%");
