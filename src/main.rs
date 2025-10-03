@@ -31,7 +31,7 @@ impl Bar {
         let update_cmd = Command::new("xsetroot")
             .arg("-name")
             .arg(&content)
-            .spawn();
+            .output();
 
         if let Ok(_) = update_cmd {
             println!("[INFO]: statusbar updated with content \"{content}\"");
