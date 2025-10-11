@@ -4,6 +4,7 @@ use std::time::{Duration, Instant};
 pub mod time;
 pub mod battery;
 pub mod weather;
+pub mod cpu;
 
 pub trait Block {
     fn content(&self) -> String;

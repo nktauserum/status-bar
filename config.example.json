@@ -10,11 +10,14 @@
   },
 
   "weather": {
-      "place": {
-        "lat": 28,
-        "long": 56
-      },
-      "key": "your OpenWeather API key",
-      "interval": 900000
-    }
+    "place": {
+      "lat": 28,
+      "long": 56
+    },
+    "key": "your OpenWeather API key",
+    "interval": 900000
+  },
+  "cpu": {
+    "interval": 1000
+  }
 }

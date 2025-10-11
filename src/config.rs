@@ -7,6 +7,7 @@ pub struct Config {
     pub datetime: DateTimeConfig,
     pub battery: BatteryConfig,
     pub weather: WeatherConfig,
+    pub cpu: CPUConfig,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -32,6 +33,11 @@ pub struct WeatherPlace {
     pub lat: f64,
     #[serde(rename = "long")]
     pub long: f64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CPUConfig {
+    pub interval: u64,
 }
 
 
