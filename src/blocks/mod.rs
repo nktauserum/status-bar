@@ -34,6 +34,8 @@ impl LastUpdated {
 
     pub fn get_last_result(&self) -> String {
         let guard = self.last_result.lock().expect("locking last_result");
+        let mut t_guard = self.last_update.lock().expect("locking last_update");
+        *t_guard = Instant::now();
         guard.clone()
     }
 
