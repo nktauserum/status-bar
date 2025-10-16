@@ -1,7 +1,6 @@
 use crate::blocks::{Block, LastUpdated};
-use openweather_sdk::responses::CurrentResponse;
 use reqwest::blocking::Client;
-
+use serde::{Deserialize, Serialize};
 
 pub struct WeatherBlock {
     last: LastUpdated,
@@ -66,4 +65,66 @@ impl Block for WeatherBlock {
 
         res
     }
+}
+
+// API response implementations: https://github.com/jt-rose/openweather_sdk
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Sys {
+    #[serde(alias = "type")]
+    pub country: String,
+    pub sunrise: usize,
+    pub sunset: usize,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Main {
+    pub temp: f64,
+    pub feels_like: f64,
+    pub temp_min: f64,
+    pub temp_max: f64,
+    pub pressure: u64,
+    pub humidity: u64,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct CurrentResponse {
+    pub coord: Coord,
+    pub weather: Vec<Weather>,
+    pub base: String,
+    pub main: Main,
+    pub visibility: usize,
+    pub wind: Wind,
+    pub clouds: Clouds,
+    pub dt: usize,
+    pub sys: Sys,
+    pub timezone: i64,
+    pub id: usize,
+    pub name: String,
+    pub cod: usize,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Clouds {
+    pub all: i64
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Weather {
+    pub id: u64,
+    pub main: String,
+    pub description: String,
+    pub icon: String
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Wind {
+    pub speed: f64,
+    pub deg: i64,
+    pub gust: Option<f64>
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Coord {
+    pub lat: f64,
+    pub lon: f64
 }
