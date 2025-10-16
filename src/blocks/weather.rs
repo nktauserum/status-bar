@@ -55,7 +55,7 @@ impl Block for WeatherBlock {
                     None => String::new(),
                 };
 
-                let result = format!("{upper_first} {:.0}°C", resp.main.temp);
+                let result = format!("^c#D9E0EE^ {upper_first} {:.0}°C^c#1E1D2D^", resp.main.temp);
                 self.last.set_last_result(result.clone());
                 result
             }).unwrap_or_else(|err| {

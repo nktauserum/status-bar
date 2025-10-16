@@ -49,7 +49,9 @@ impl Bar {
                 upd_str.push(block.content())
             }
 
-            self.update(upd_str.join(" | "));
+            upd_str[0] = "  ".to_string() + &upd_str[0];
+
+            self.update(upd_str.join(" "));
 
             sleep(Duration::from_millis(self.update_interval));
         }

@@ -27,8 +27,8 @@ impl Block for DatetimeBlock {
             }
         };
 
-        local_time
+        format!("^b#1E1D2D^^c#96CDFB^{time} ^c#1E1D2D^", time = local_time
             .format(self.format.as_str())
-            .to_string()
+            .to_string())
     }
 }
