@@ -70,8 +70,6 @@ impl Block for WeatherBlock {
 // API response implementations: https://github.com/jt-rose/openweather_sdk
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Sys {
-    #[serde(alias = "type")]
-    pub r_type: u8,
     pub country: String,
     pub sunrise: usize,
     pub sunset: usize,
