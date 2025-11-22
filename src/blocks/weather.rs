@@ -91,7 +91,7 @@ pub struct CurrentResponse {
     pub weather: Vec<Weather>,
     pub base: String,
     pub main: Main,
-    pub visibility: usize,
+    //pub visibility: usize,
     pub wind: Wind,
     pub clouds: Clouds,
     pub dt: usize,
