@@ -12,7 +12,6 @@ pub struct Config {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DateTimeConfig {
-    pub offset: i32,
     pub format: String,
 }
 

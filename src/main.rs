@@ -8,7 +8,6 @@ use crate::blocks::{
     Block,
     
     time::DatetimeBlock,
-    battery::BatteryBlock,
     weather::WeatherBlock,
     cpu::CPUBlock,
 };
@@ -77,7 +76,7 @@ fn main() {
     let bar = Bar::new(config.interval_all, vec![
         WeatherBlock::new(config.weather.interval, config.weather.key, config.weather.place.lat, config.weather.place.long),
         CPUBlock::new(config.cpu.interval),
-        DatetimeBlock::new(config.datetime.offset, config.datetime.format.as_str()),
+        DatetimeBlock::new(config.datetime.format.as_str()),
     ]);
 
     bar.run();

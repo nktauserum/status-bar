@@ -1,15 +1,13 @@
 use crate::blocks::Block;
-use chrono::{DateTime, FixedOffset, Utc};
+use chrono::{DateTime, Utc};
 
 pub struct DatetimeBlock {
-    timezone_offset: i32,
     format: String,
 }
 
 impl DatetimeBlock {
-    pub fn new(timezone_offset: i32, format: &str) -> Box<Self> {
+    pub fn new(format: &str) -> Box<Self> {
         Box::new(Self {
-            timezone_offset,
             format: format.to_string()
         })
     }
@@ -17,15 +15,7 @@ impl DatetimeBlock {
 
 impl Block for DatetimeBlock {
     fn content(&self) -> String {
-        let utc_now: DateTime<Utc> = Utc::now();
-        let tz = FixedOffset::east_opt(self.timezone_offset * 3600);
-        let local_time = {
-            if let Some(timezone) = tz {
-                utc_now.with_timezone(&timezone)
-            } else {
-                DateTime::from(utc_now)
-            }
-        };
+        let local_time: DateTime<Utc> = DateTime::from(Utc::now());
 
         format!("^b#1E1D2D^^c#96CDFB^{time} ^c#1E1D2D^", time = local_time
             .format(self.format.as_str())
