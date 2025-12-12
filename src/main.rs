@@ -10,6 +10,7 @@ use crate::blocks::{
     time::DatetimeBlock,
     weather::WeatherBlock,
     cpu::CPUBlock,
+    memory::MemoryBlock,
 };
 use crate::config::Config;
 use clap::Parser;
@@ -50,7 +51,7 @@ impl Bar {
 
             upd_str[0] = "  ".to_string() + &upd_str[0];
 
-            self.update(upd_str.join(" "));
+            self.update(upd_str.join(" ^c#D9E0EE^| "));
 
             sleep(Duration::from_millis(self.update_interval));
         }
@@ -75,6 +76,7 @@ fn main() {
 
     let bar = Bar::new(config.interval_all, vec![
         WeatherBlock::new(config.weather.interval, config.weather.key, config.weather.place.lat, config.weather.place.long),
+        MemoryBlock::new(500),
         CPUBlock::new(config.cpu.interval),
         DatetimeBlock::new(config.datetime.format.as_str()),
     ]);

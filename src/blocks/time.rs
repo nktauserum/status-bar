@@ -17,7 +17,7 @@ impl Block for DatetimeBlock {
     fn content(&self) -> String {
         let local_time: DateTime<Utc> = DateTime::from(Utc::now());
 
-        format!("^b#1E1D2D^^c#96CDFB^{time} ^c#1E1D2D^", time = local_time
+        format!("^b#1E1D2D^^c#D9E0EE^{time} ^c#1E1D2D^", time = local_time
             .format(self.format.as_str())
             .to_string())
     }

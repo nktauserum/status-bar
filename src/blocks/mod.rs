@@ -5,6 +5,7 @@ pub mod time;
 pub mod battery;
 pub mod weather;
 pub mod cpu;
+pub mod memory;
 
 pub trait Block {
     fn content(&self) -> String;

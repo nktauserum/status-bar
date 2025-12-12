@@ -22,7 +22,7 @@ impl Block for CPUBlock {
             .output();
 
         if let Ok(bytes) = cmd {
-            return format!("^c#F28FAD^^b#1E1D2D^ CPU {load} ^c#1E1D2D^", load = String::from_utf8(bytes.stdout).expect("Некорректная UTF-8 последовательность").trim_end_matches('\n'));
+            return format!("^c#D9E0EE^^b#1E1D2D^CPU {load}^c#1E1D2D^", load = String::from_utf8(bytes.stdout).expect("Некорректная UTF-8 последовательность").trim_end_matches('\n'));
         } else if let Err(e) = cmd {
             eprintln!("[ERROR]: CPUBlock error: {e}");
         }
