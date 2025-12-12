@@ -28,6 +28,6 @@ impl Block for CPUBlock {
         } else if let Err(e) = cmd {
             eprintln!("[ERROR]: CPUBlock error: {e}");
         }
-        self.last.get_last_result()
+        format!("^c#FFCC00^[⚠]^c#1E1D2D^ {}", self.last.get_last_result())
     }
 }

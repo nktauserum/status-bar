@@ -60,7 +60,7 @@ impl Block for WeatherBlock {
                 result
             }).unwrap_or_else(|err| {
                 eprintln!("[ERROR]: weather update: {err}");
-                self.last.get_last_result()
+                format!("^c#FFCC00^[⚠]^c#1E1D2D^ {}", self.last.get_last_result())
             });
 
         res

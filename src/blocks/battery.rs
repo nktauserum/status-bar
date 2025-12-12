@@ -41,7 +41,7 @@ impl Block for BatteryBlock {
 
         let res = self.build().unwrap_or_else(|err| {
             eprintln!("[ERROR]: battery update: {err}");
-            self.last.get_last_result()
+            format!("^c#FFCC00^[⚠]^c#1E1D2D^ {}", self.last.get_last_result())
         });
 
         res
