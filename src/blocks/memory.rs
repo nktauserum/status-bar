@@ -23,7 +23,9 @@ impl Block for MemoryBlock {
             .output();
 
         if let Ok(bytes) = output {
-            return format!("^c#D9E0EE^^b#1E1D2D^Mem {load}^c#1E1D2D^", load = String::from_utf8(bytes.stdout).expect("Некорректная UTF-8 последовательность").trim_end_matches('\n'));
+            let result = format!("^c#D9E0EE^^b#1E1D2D^Mem {load}^c#1E1D2D^", load = String::from_utf8(bytes.stdout).expect("Некорректная UTF-8 последовательность").trim_end_matches('\n'));
+            self.last.set_last_result(result.clone());
+            return result;
         } else if let Err(e) = output {
             eprintln!("[ERROR]: CPUBlock error: {e}");
         }
